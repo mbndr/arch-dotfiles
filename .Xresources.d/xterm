@@ -1,0 +1,36 @@
+!misc
+xterm*font: fixed
+xterm*boldFont: fixed
+xterm*metaSendsEscape: true
+xterm*eightBitInput: false
+xterm*backarrowKey: false
+xterm*VT100.geometry: 120x40
+xterm*internalBorder: 5
+
+!colors
+xterm*foreground: #c0b18b
+xterm*background: #1f1f1f
+!black
+xterm*color0: #4a3637
+xterm*color8: #4a3637
+!red
+xterm*color1: #d17b49
+xterm*color9: #d17b49
+!green
+xterm*color2: #7b8748
+xterm*color10: #7b8748
+!yellow
+xterm*color3: #af865a
+xterm*color11: #af865a
+!blue
+xterm*color4: #535C5C
+xterm*color12: #535C5C
+!magenta
+xterm*color5: #775759
+xterm*color13: #775759
+!cyan
+xterm*color6: #6d715e
+xterm*color14: #6d715e
+!white
+xterm*color7: #c0b18b
+xterm*color15: #c0b18b

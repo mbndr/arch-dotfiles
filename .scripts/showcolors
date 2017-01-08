@@ -1,0 +1,11 @@
+#!/bin/bash
+
+box="\xE2\x98\xA0"
+
+echo
+for i in {0..7}; do
+    echo -en "\033[0;4${i}m  \033[0m"
+done
+echo
+echo
+

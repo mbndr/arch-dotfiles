@@ -1,0 +1,73 @@
+#!/bin/bash
+#
+# Install script for the dotfiles
+# It copies all files in its directory to the home directory
+# Exceptions are this file and the /other folder
+# There are gobal configuration not in the home directory
+# If a file already exists it asks for ignoring or overwriting
+# At last a information about the files in the /other folder
+# If you give a filename as a parameter, only this will be processed
+
+dfiles=$(pwd)
+home=$HOME
+
+info() {
+    echo -e "\x1b[0;36m${1}\x1b[0m"
+}
+
+
+# Checks if the file already exists and if whished, copyies it
+dotcopy() {
+    # Already exists, ask for permission to overwrite
+    if [ -e $home/$1 ]; then
+        read -p "Overwrite ${1}? [y/N] " ow
+        # Process
+	if [ "$ow" == y ] || [ "$ow" == Y ]; then
+            info "processing: ${1}"
+            realcopy $1
+            return
+	fi
+        info "ignoring: ${1}"
+        return
+    fi
+    # Doesn't exist, copy it
+    info "processing: ${1}"
+    realcopy $1
+}
+
+# Copy the file or folder to home
+realcopy() {
+    cp -r $dfiles/$1 $home/$1
+}
+
+echo
+echo -e "\x1b[0;32mInstalling Dotfiles\x1b[0m"
+echo -e "\x1b[0;33mPlease check first, if the directories are correct:\x1b[0m"
+echo "  Dotfiles: ${dfiles}"
+echo "  Home: ${home}"
+read -p "Correct? [y/N] " cor
+
+# Not correct, exit
+if [ "$cor" != y ] && [ "$cor" != Y ]; then
+    echo "Aborting"
+    exit 1
+fi
+
+# Only one file
+if [ $# -ne 0 ]; then
+    dotcopy $1
+    exit
+fi
+
+for f in $dfiles/{.,}*; do
+    # Get the basename
+    base=$(basename "${f}")
+    # Ignore the current dir, parent dir or excluded files / folders
+    if [ $base == . ] || [ $base == .. ] || [ $base == other ] || [ $base == install ] || [ $base == README.md ]; then
+        continue
+    fi
+    # Copy the file
+    dotcopy $base
+done
+
+echo -e "\x1b[0;32mDotfiles installed. Don't forget about the files in the /other directory\x1b[0m"
