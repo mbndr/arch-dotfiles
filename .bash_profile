@@ -2,4 +2,4 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 # Welcome message
-echo -e "\nWelcome, please call 'startcx' to start the display server.\n"
+echo -e "\nWelcome, please call 'startx' to start the display server.\n"

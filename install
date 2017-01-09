@@ -2,22 +2,44 @@
 #
 # Install script for the dotfiles
 # It copies all files in its directory to the home directory
-# Exceptions are this file and the /other folder
-# There are gobal configuration not in the home directory
+# Exceptions can be seen in the configuration (first code block)
+# The script only handles files and folders in the home directory
 # If a file already exists it asks for ignoring or overwriting
-# At last a information about the files in the /other folder
+# At last it shows a information about the files in the /other folder
 # If you give a filename as a parameter, only this will be processed
+# Recommended / needed software can be seen with the parameter "software"
+# TODO maybe in the future a recursive call would be necessary
 
+# Configuration
 dfiles=$(pwd)
 home=$HOME
+ignore=(. .. other README.md install .git)
+url="https://github.com/probandula/arch-dotfiles"
 
+# Helper for check if a file / dir should be ignored
+ignore_next=0
+is_ignored() {
+    for i in ${ignore[@]}; do
+        if [ "$i" == "$1" ]; then
+            ignore_next=1
+            return
+        fi
+    done
+    ignore_next=0
+}
+
+# Print a info message
 info() {
     echo -e "\x1b[0;36m${1}\x1b[0m"
 }
 
-
-# Checks if the file already exists and if whished, copyies it
+# Checks if the file already exists and if whished, copies it
 dotcopy() {
+    # Check, if dotfile really exists
+    if [ ! -e $dfiles/$1 ]; then
+        info "ignoring: $1 (not existing)"
+        return
+    fi
     # Already exists, ask for permission to overwrite
     if [ -e $home/$1 ]; then
         read -p "Overwrite ${1}? [y/N] " ow
@@ -40,34 +62,76 @@ realcopy() {
     cp -r $dfiles/$1 $home/$1
 }
 
-echo
-echo -e "\x1b[0;32mInstalling Dotfiles\x1b[0m"
-echo -e "\x1b[0;33mPlease check first, if the directories are correct:\x1b[0m"
-echo "  Dotfiles: ${dfiles}"
-echo "  Home: ${home}"
-read -p "Correct? [y/N] " cor
+# Prints the directory information and let the user check if correct
+dircheck() {
+    echo -e "\x1b[0;33mPlease check first, if the directories are correct:\x1b[0m"
+    echo "  Dotfiles: ${dfiles}"
+    echo "  Home: ${home}"
+    # Directories correct?
+    read -p "Correct? [y/N] " cor
+    if [ "$cor" != y ] && [ "$cor" != Y ]; then
+        echo "Aborting"
+        exit 1
+    fi
+}
 
-# Not correct, exit
-if [ "$cor" != y ] && [ "$cor" != Y ]; then
-    echo "Aborting"
-    exit 1
-fi
+# Default operation: Copy all files
+all() {
 
-# Only one file
-if [ $# -ne 0 ]; then
-    dotcopy $1
+    for f in $dfiles/{.,}*; do
+        # Get the basename
+        base=$(basename "${f}")
+        # Ignore specific files / folders
+	is_ignored $base
+        [ "$ignore_next" == 1 ] && continue
+
+        # Copy the file
+        dotcopy $base
+    done
+    # Show information for the /other files
+    echo -e "\x1b[0;32mDotfiles installed. Don't forget about the stuff in the /other directory\x1b[0m"
+}
+
+# Print a help text
+help() {
+    echo -e "./install\t\tCopy all dotfiles in your home directory"
+    echo -e "./install help\t\tShow this help message"
+    echo -e "./install software\tShow software which is recommended / needed in order to use this configuration"
+    echo -e "./install <file>\tOnly copy a specific file to your home directory"
+}
+
+# Print software information
+software() {
+    # Print a line of software
+    line() {
+        echo -e "\x1b[0;36m${1}\x1b[0m: ${2}"
+    }
+
+    echo "List of sofware recommended / needed in order to use this configuration:"
+    line "inxi" "Show system information"
+    line "screenfetch" "see above"
+    line "TODO" "TODO"
+}
+
+# START
+
+# Print header
+echo -e "\x1b[0;32mDotfiles (${url})\x1b[0m"
+
+# Default operation if no arguments given
+if [ $# == 0 ]; then
+    all
     exit
 fi
 
-for f in $dfiles/{.,}*; do
-    # Get the basename
-    base=$(basename "${f}")
-    # Ignore the current dir, parent dir or excluded files / folders
-    if [ $base == . ] || [ $base == .. ] || [ $base == other ] || [ $base == install ] || [ $base == README.md ]; then
-        continue
-    fi
-    # Copy the file
-    dotcopy $base
-done
-
-echo -e "\x1b[0;32mDotfiles installed. Don't forget about the files in the /other directory\x1b[0m"
+# Argument is given
+case "$1" in
+    # Print help text
+    -h|-help|--help|-?|h|help) help;;
+    # Print software to install
+    software) software;;
+    # Assuming that specific file was given
+    *) dircheck
+       dotcopy $1
+       ;;
+esac
