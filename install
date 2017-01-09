@@ -95,8 +95,8 @@ all() {
 # Print a help text
 help() {
     echo -e "./install\t\tCopy all dotfiles in your home directory"
-    echo -e "./install help\t\tShow this help message"
-    echo -e "./install software\tShow software which is recommended / needed in order to use this configuration"
+    echo -e "./install -h\t\tShow this help message"
+    echo -e "./install -s\tShow software which is recommended / needed in order to use this configuration"
     echo -e "./install <file>\tOnly copy a specific file to your home directory"
 }
 
@@ -127,9 +127,9 @@ fi
 # Argument is given
 case "$1" in
     # Print help text
-    -h|-help|--help|-?|h|help) help;;
+    -h|-help|--help) help;;
     # Print software to install
-    software) software;;
+    -s|--software) software;;
     # Assuming that specific file was given
     *) dircheck
        dotcopy $1
