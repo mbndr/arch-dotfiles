@@ -9,7 +9,13 @@ if [ "$EDITOR" == "" ]; then
 fi
 
 edit() {
-    eval ${EDITOR} $1
+    eval $EDITOR $1
+    echo "Don't forget to apply your changes to the dotfiles"
+}
+
+sudoedit() {
+    e=$EDITOR
+    eval sudo $e $1
     echo "Don't forget to apply your changes to the dotfiles"
 }
 
@@ -19,6 +25,6 @@ case $1 in
     xterm) edit ~/.Xresources.d/xterm;;
     sxhkd) edit ~/.config/sxhkd/sxhkdrc;;
     bspwm) edit ~/.config/bspwm/bspwmrc;;
-    hosts) edit /etc/hosts;;
+    hosts) sudoedit /etc/hosts;;
     *) echo "No registered config key"; exit 1;;
 esac
