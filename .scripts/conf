@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# Inspired by windelicato's dotfiles
+# With this script a config file for a specific key (program name) is opened
+
+if [ "$EDITOR" == "" ]; then
+    echo "Set \$EDITOR to open a config file"
+    exit 1
+fi
+
+edit() {
+    eval ${EDITOR} $1
+    echo "Don't forget to apply your changes to the dotfiles"
+}
+
+case $1 in
+    xinit) edit ~/.xinitrc;;
+    xresources) edit ~/.Xresources;;
+    xterm) edit ~/.Xresources.d/xterm;;
+    sxhkd) edit ~/.config/sxhkd/sxhkdrc;;
+    bspwm) edit ~/.config/bspwm/bspwmrc;;
+    hosts) edit /etc/hosts;;
+    *) echo "No registered config key"; exit 1;;
+esac
