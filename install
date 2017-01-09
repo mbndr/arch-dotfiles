@@ -16,6 +16,21 @@ home=$HOME
 ignore=(. .. other README.md install .git)
 url="https://github.com/probandula/arch-dotfiles"
 
+# Print software information
+software() {
+    # Print a line of software
+    line() {
+        echo -e "\x1b[0;36m${1}\x1b[0m: ${2}"
+    }
+
+    echo "List of sofware recommended / needed in order to use this configuration: (NOT FINISHED!)"
+    line "inxi" "System information"
+    line "screenfetch" "Logo and system information"
+    line "dfc" "Device overview"
+    line "htop" "Process information"
+}
+
+
 # Helper for check if a file / dir should be ignored
 ignore_next=0
 is_ignored() {
@@ -98,19 +113,6 @@ help() {
     echo -e "./install -h\t\tShow this help message"
     echo -e "./install -s\tShow software which is recommended / needed in order to use this configuration"
     echo -e "./install <file>\tOnly copy a specific file to your home directory"
-}
-
-# Print software information
-software() {
-    # Print a line of software
-    line() {
-        echo -e "\x1b[0;36m${1}\x1b[0m: ${2}"
-    }
-
-    echo "List of sofware recommended / needed in order to use this configuration:"
-    line "inxi" "Show system information"
-    line "screenfetch" "see above"
-    line "TODO" "TODO"
 }
 
 # START
