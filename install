@@ -74,7 +74,7 @@ dotcopy() {
 
 # Copy the file or folder to home
 realcopy() {
-    cp -r $dfiles/$1 $home/$1
+    cp -r $dfiles/$1 $home/
 }
 
 # Prints the directory information and let the user check if correct
