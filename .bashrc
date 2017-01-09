@@ -1,8 +1,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Aliase
+# Aliases
 alias ll='ls -la --color=auto'
+alias tree='tree -a -C -I ".git"'
 
 # Prompt
 export PROMPT_COMMAND=_prompt
