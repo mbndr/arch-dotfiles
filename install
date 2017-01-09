@@ -20,14 +20,20 @@ url="https://github.com/probandula/arch-dotfiles"
 software() {
     # Print a line of software
     line() {
-        echo -e "\x1b[0;36m${1}\x1b[0m: ${2}"
+        local inst="\x1b[0;31mNot installed\x1b[0m"
+        which $1 > /dev/null 2>&1 && inst="\x1b[0;32mInstalled\x1b[0m"
+        [ "$3" == "n" ] && inst="\x1b[0;33mCheck not possible\x1b[0m"
+        echo -e "\x1b[0;36m${1}\x1b[0m: ${2} - ${inst}"
     }
 
-    echo "List of sofware recommended / needed in order to use this configuration: (NOT FINISHED!)"
+    # Parameters: name, description, "n" for not checkable (f.e. software without binary in $PATH)
+    echo "List of sofware recommended / needed in order to use this configuration: (NOT FINISHED!)\n"
     line "inxi" "System information"
     line "screenfetch" "Logo and system information"
     line "dfc" "Device overview"
     line "htop" "Process information"
+    line "not testable" "Testsoftware without callable" "n"
+    line "not installed" "not installed software"
 }
 
 
@@ -111,7 +117,8 @@ all() {
 help() {
     echo -e "./install\t\tCopy all dotfiles in your home directory"
     echo -e "./install -h\t\tShow this help message"
-    echo -e "./install -s\tShow software which is recommended / needed in order to use this configuration"
+    echo -e "./install -s\t\tShow software which is recommended / needed in order to use this configuration"
+    echo -e "\t\t\tAlso checks if it's installed, not installed or not checkable"
     echo -e "./install <file>\tOnly copy a specific file to your home directory"
 }
 

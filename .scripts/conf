@@ -21,7 +21,7 @@ sudoedit() {
 
 case $1 in
     xinit) edit ~/.xinitrc;;
-    xresources) edit ~/.Xresources;;
+    xresources|xres) edit ~/.Xresources;;
     xterm) edit ~/.Xresources.d/xterm;;
     sxhkd) edit ~/.config/sxhkd/sxhkdrc;;
     bspwm) edit ~/.config/bspwm/bspwmrc;;
