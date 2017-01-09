@@ -24,3 +24,17 @@ export PATH=$PATH:~/.scripts
 
 # Favorite editor
 export EDITOR=nano
+
+# Helper functions to print colored
+cprint() {
+    echo -e "\x1b[0;${1}m${2}\x1b[0m"
+}
+
+printblk() { cprint "30" $1; }
+printred() { cprint "31" $1; }
+printgrn() { cprint "32" $1; }
+printylw() { cprint "33" $1; }
+printblu() { cprint "34" $1; }
+printmag() { cprint "35" $1; }
+printcyn() { cprint "36" $1; }
+printwht() { cprint "37" $1; }
