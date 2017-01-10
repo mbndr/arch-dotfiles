@@ -12,7 +12,6 @@
 
 # Configuration
 dfiles=$(pwd)
-home=$HOME
 ignore=(. .. other README.md install .git)
 url="https://github.com/probandula/arch-dotfiles"
 
@@ -37,6 +36,7 @@ software() {
         echo -e "\x1b[0;36m${name}\x1b[0m: ${2} - ${inst}"
     }
 
+    # Print a new category heading
     cat() {
         echo
         echo -e "\x1b[4;36m${1}\x1b[0m"
@@ -76,45 +76,62 @@ is_ignored() {
     ignore_next=0
 }
 
-# Print a info message
-info() {
-    echo -e "\x1b[0;36m${1}\x1b[0m"
-}
-
 # Checks if the file already exists and if whished, copies it
 dotcopy() {
+
+    # Print a info message
+    info() {
+        echo -e "\x1b[0;36m${1}\x1b[0m"
+    }
+
+    # Copy the file or folder to home
+    realcopy() {
+        cp -r $dfiles/$1 $2/
+    }
+
     # Check, if dotfile really exists
     if [ ! -e $dfiles/$1 ]; then
         info "ignoring: $1 (not existing)"
         return
     fi
+
+    # Name which is logged to the info msg
+    ln=$1
+
+    # Get if dir
+    [ -d $dfiles/$1 ] && ln+=" (DIR)"
+
     # Already exists, ask for permission to overwrite
-    if [ -e $home/$1 ]; then
-        read -p "Overwrite ${1}? [y/N] " ow
+    if [ -e $2/$1 ]; then
+        read -p "Overwrite ${ln}? [y/N] " ow
         # Process
 	if [ "$ow" == y ] || [ "$ow" == Y ]; then
-            info "processing: ${1}"
-            realcopy $1
+            info "processing: ${ln}"
+            realcopy $1 $2
             return
 	fi
-        info "ignoring: ${1}"
+        info "ignoring: ${ln}"
         return
     fi
     # Doesn't exist, copy it
-    info "processing: ${1}"
-    realcopy $1
-}
-
-# Copy the file or folder to home
-realcopy() {
-    cp -r $dfiles/$1 $home/
+    info "processing: ${ln}"
+    realcopy $1 $2
 }
 
 # Prints the directory information and let the user check if correct
 dircheck() {
+    # Check if both directories exist
+    dpath=$(realpath $dfiles)
+    opath=$(realpath $1)
+    if [ ! -d $dpath ] || [ ! -d $opath ]; then
+        echo -e "\x1b[0;31mOne or more paths are no directories: ${dpath} ${opath}\x1b[0m"
+        echo
+        exit 1
+    fi
+
     echo -e "\x1b[0;33mPlease check first, if the directories are correct:\x1b[0m"
-    echo "  Dotfiles: ${dfiles}"
-    echo "  Home: ${home}"
+    echo "  Dotfiles: ${dpath}"
+    echo "  Output (home): ${opath}"
     # Directories correct?
     read -p "Correct? [y/N] " cor
     if [ "$cor" != y ] && [ "$cor" != Y ]; then
@@ -124,8 +141,9 @@ dircheck() {
 }
 
 # Default operation: Copy all files
+# $1: Output directory
 all() {
-    dircheck
+    dircheck $1
     for f in $dfiles/{.,}*; do
         # Get the basename
         base=$(basename "${f}")
@@ -134,15 +152,16 @@ all() {
         [ "$ignore_next" == 1 ] && continue
 
         # Copy the file
-        dotcopy $base
+        dotcopy $base $1
     done
     # Show information for the /other files
-    echo -e "\x1b[0;32mDotfiles installed. Don't forget about the stuff in the /other directory\x1b[0m"
+    echo -e "\n\x1b[0;32mDotfiles installed. Don't forget about the stuff in the /other directory\x1b[0m"
 }
 
 # Print a help text
 help() {
     echo -e "./install\t\tCopy all dotfiles in your home directory"
+    echo -e "./install -o <dir>\tDefault operation with a custom directory to output to (not combinable)"
     echo -e "./install -h\t\tShow this help message"
     echo -e "./install -s\t\tShow software which is recommended / needed in order to use this configuration"
     echo -e "\t\t\tAlso checks if it's installed, not installed or not checkable"
@@ -151,13 +170,22 @@ help() {
 
 # START
 
+outdir=$HOME
+argc=$#
+if [ "$1" == "-o" ] || [ $argc -ge 2 ]; then
+    outdir=$2
+    argc=0
+fi
+
 # Print header
 echo
 echo -e "\x1b[0;32mDotfiles (${url})\x1b[0m"
+echo
 
 # Default operation if no arguments given
-if [ $# == 0 ]; then
-    all
+if [ $argc == 0 ]; then
+    all $outdir
+    echo
     exit
 fi
 
@@ -168,8 +196,14 @@ case "$1" in
     # Print software to install
     -s|--software) software;;
     # Assuming that specific file was given
-    *) dircheck
-       dotcopy $1
+    *) if [[ $1 == -* ]]; then
+           echo -e "\x1b[0;31mInvalid option: $1\x1b[0m"
+           help
+           echo
+           exit
+       fi
+       dircheck $outdir
+       dotcopy $1 $outdir
        ;;
 esac
 
