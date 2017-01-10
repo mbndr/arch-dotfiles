@@ -17,23 +17,50 @@ ignore=(. .. other README.md install .git)
 url="https://github.com/probandula/arch-dotfiles"
 
 # Print software information
+# $1: Software name
+# $2: Software description
+# $3: If the name is not the check command, give the command here
+# $4: If the software is unable to check for (through 'which') give "n" here
+# TODO Maybe there should be more possibilities for checking if sth is installed (f.e. check if file exist...)
 software() {
     # Print a line of software
     line() {
+        local name=$1 # Name of the software
+        local call=$name # How the software can be called (for check)
+        # If this parameter is given, it's the check command
+        [ "$3" != "" ] && call=$3
+        # Check if installed
         local inst="\x1b[0;31mNot installed\x1b[0m"
-        which $1 > /dev/null 2>&1 && inst="\x1b[0;32mInstalled\x1b[0m"
-        [ "$3" == "n" ] && inst="\x1b[0;33mCheck not possible\x1b[0m"
-        echo -e "\x1b[0;36m${1}\x1b[0m: ${2} - ${inst}"
+        which $call > /dev/null 2>&1 && inst="\x1b[0;32mInstalled\x1b[0m"
+        # If check not possible
+        [ "$4" == "n" ] && inst="\x1b[0;33mCheck not possible\x1b[0m"
+        echo -e "\x1b[0;36m${name}\x1b[0m: ${2} - ${inst}"
+    }
+
+    cat() {
+        echo
+        echo -e "\x1b[4;36m${1}\x1b[0m"
     }
 
     # Parameters: name, description, "n" for not checkable (f.e. software without binary in $PATH)
-    echo "List of sofware recommended / needed in order to use this configuration: (NOT FINISHED!)\n"
+    echo "List of sofware recommended / needed in order to use this configuration: (WIP)"
+
+    cat "Utils"
+    line "yaourt" "AUR install tool"
     line "inxi" "System information"
     line "screenfetch" "Logo and system information"
     line "dfc" "Device overview"
     line "htop" "Process information"
-    line "not testable" "Testsoftware without callable" "n"
-    line "not installed" "not installed software"
+    line "tlp" "Fire and forget power manager"
+    line "xterm" "Terminal emulator"
+
+    cat "Interface"
+    line "x" "Xorg packages (xorg-server xorg-xinit xorg-utils xorg-server-utils)" "startx"
+    line "sxhkd" "X input event deamon"
+    line "bspwm" "Window manager"
+
+    cat "Development"
+    line "micro" "Terminal-based text editor"
 }
 
 
@@ -98,7 +125,7 @@ dircheck() {
 
 # Default operation: Copy all files
 all() {
-
+    dircheck
     for f in $dfiles/{.,}*; do
         # Get the basename
         base=$(basename "${f}")
@@ -125,6 +152,7 @@ help() {
 # START
 
 # Print header
+echo
 echo -e "\x1b[0;32mDotfiles (${url})\x1b[0m"
 
 # Default operation if no arguments given
@@ -144,3 +172,5 @@ case "$1" in
        dotcopy $1
        ;;
 esac
+
+echo
