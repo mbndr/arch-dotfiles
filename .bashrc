@@ -4,6 +4,19 @@
 # Aliases
 alias ll='ls -la --color=auto'
 alias tree='tree -a -C -I ".git"'
+# Set the wallpaper TODO to function to be able to set different picture or mode
+alias update_bg='feh --bg-fill ~/.wallpaper.jpg'
+# Update the screen resolution TODO to function to be able to set different output (auto?)
+alias update_resolution='xrandr --output VGA-1 --auto'
+# Update screen (resolution and background)
+alias update_screen='update_resolution && update_bg'
+alias us='update_screen'
+# TODO just a workaround for non bold
+alias xterm='xterm -fn 5x10'
+
+# BSPWM aliases
+alias bgap='bspc config window_gap '
+alias bbw='bspc config border_width '
 
 # Prompt
 export PROMPT_COMMAND=_prompt

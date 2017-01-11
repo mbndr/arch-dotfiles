@@ -56,8 +56,10 @@ software() {
 
     cat "Interface"
     line "x" "Xorg packages (xorg-server xorg-xinit xorg-utils xorg-server-utils)" "startx"
+    line "xrandr" "Setting screen resolution"
     line "sxhkd" "X input event deamon"
     line "bspwm" "Window manager"
+    line "feh" "To set a desktop wallpaper"
 
     cat "Development"
     line "micro" "Terminal-based text editor"
