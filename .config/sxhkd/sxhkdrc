@@ -6,6 +6,10 @@ super + Return
 super + space
 	dmenu_run
 
+# Close current node
+super + c
+	bspc node -c
+
 # Reload sxhkd config files
 super + Escape
 	pkill -USR1 -x sxhkd
