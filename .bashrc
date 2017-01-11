@@ -17,6 +17,7 @@ alias xterm='xterm -fn 5x10'
 # BSPWM aliases
 alias bgap='bspc config window_gap '
 alias bbw='bspc config border_width '
+alias bnc='bspc node -c'
 
 # Prompt
 export PROMPT_COMMAND=_prompt
