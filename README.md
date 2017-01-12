@@ -2,17 +2,19 @@
 These are my early stage dotfiles for my Arch Linux system.  
 I'm no Arch expert and it's possible that there are many mistakes in my dotfiles. Feel free to report these.
 
-![screenshot](/other/screenshot.png)
+![screenshot](/misc/screenshot.png)
 
 ```bash
 git clone https://github.com/probandula/arch-dotfiles
 cd arch-dotfiles
-./install -h # Print help
+./dotfiles # Print help
 ```
-**It's recommended to check first, if all software is installed (`./install -s`), then to manually backup your old configuration and then to install the dotfiles (`./install`).**
+It's recommended to check first, if all software is installed (`./dotfiles s`), then to manually backup your old configuration and then to install the dotfiles (`./dotfiles i`).
+
+**The top thing on the TODO list is to get it working to have multiple options on the `./dotfiles i` command. Currently there's only one at a time possible**
 
 ## Software list
-If you run `./install -s` there will be a list of software recommended or needed to use this configuration.
+If you run `./dotfiles s` there will be a list of software recommended or needed to use this configuration.
 There is also printed if this software is currently installed on your system.  
 **This list guarantees nothing and it's possible I forget something!**
 

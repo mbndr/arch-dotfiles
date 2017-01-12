@@ -2,7 +2,7 @@
 [[ $- != *i* ]] && return
 
 # Aliases
-alias ll='ls -la --color=auto'
+alias ll='ls -lah --color=auto'
 alias tree='tree -a -C -I ".git"'
 # Update the current wallpaper
 alias update_bg='[ -n "$WALLPAPER" ] && set_bg $WALLPAPER || set_bg 1'
@@ -59,7 +59,7 @@ export PATH=$PATH:~/.scripts
 # Favorite editor
 export EDITOR=nano
 # Default wallpaper
-export WALLPAPER=1
+export WALLPAPER=2
 
 # Helper functions to print colored
 cprint() {

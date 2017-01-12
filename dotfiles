@@ -1,0 +1,202 @@
+#!/bin/bash
+#
+# The updated dotfiles install script
+
+software_file="misc/software.csv"
+install_ignore=(. .. misc README.md dotfiles install .git)
+force_mode=0
+ignore_next=0
+
+# Helper function to get if a file / folder should be ignored
+# TODO is there a better way?
+is_ignored() {
+    for i in ${install_ignore[@]}; do
+        if [ "$i" == "$1" ]; then
+            ignore_next=1
+            return
+        fi
+    done
+    ignore_next=0
+}
+
+# Print a colored string
+# $1: color code, $2: string, $3: line end, $4: effect
+cprint() {
+    echo -en "\x1b[${4:-0};${1}m${2}\x1b[0m${3:-\n}"
+}
+
+# Helper function to abort the program
+abort() {
+    echo -e "\nAborting"
+    exit 1
+}
+
+# A confirm dialog. Usage: 'confirm && echo "Only if yes"'
+confirm() {
+    if [ $force_mode == 1 ] && [ "$2" != "nf" ]; then
+        return 0
+    fi
+    read -p "$(cprint 34 '::') ${1:-Are you sure?} [y/N] " resp
+    resp=${resp,,} # to lower
+    if [[ $resp =~ ^(yes|y)$ ]]; then
+        return 0
+    fi;
+    return 1
+}
+
+# Install
+install() {
+
+    # Dotcopy wraps copy process
+    dotcopy() {
+
+        # Wrapper for a copy operation
+        single_copy() {
+            cp -r $1 $2
+        }
+
+        # Copy the file and log it
+        copy_n_log() {
+            cp -r $1 $2
+            cprint 32 "ok: ${3}"
+        }
+
+        # Print a warning
+        warn() {
+            cprint 33 "$1"
+        }
+
+        # Name which will be printed
+        local log_name=$(basename $1)
+        # File or folder
+        local type="file"
+
+        # Not existing
+        if [ ! -e $1 ]; then
+            warn "ign: ${log_name} (not existing)"
+        fi
+        # Is directory
+        [ -d $1 ] && type="directory"
+        # Ask for permission if existant
+        if [ -e $2 ]; then # TODO could be better but this confirm and multiple operations don't seem to work
+            confirm "Overwrite ${type}: ${log_name}?" && copy_n_log $1 $2 $log_name || warn "ign: ${log_name}"
+        else
+            # Copy file (it doesn't already exist)
+            copy_n_log $1 $2 $log_name
+        fi
+    }
+
+    # Used variables
+    local output=$HOME
+    local dotfiles=$(realpath $(dirname "${BASH_SOURCE[0]}"))/
+    local single_file=""
+
+    # Process parameters
+    # TODO WARN!! Multiple parameters possible (maybe static depth)
+    case $2 in
+        -o) output=$3;;
+        -y) force_mode=1;;
+        -f) single_file=$3;;
+    esac
+
+    # Print directories
+    cprint 36 "Dotfiles" ": " && cprint 38 "${dotfiles}"
+    cprint 36 "Output" ": " && cprint 38 "${output}"
+
+    # Print if in force mode
+    [ $force_mode == 1 ] && cprint 31 "Force mode is enabled" || echo
+
+    # Check directories for existance and not root dir
+    output=$(realpath "$output/")
+    dotfiles=$(realpath "$dotfiles/")
+    if [ ! -d $output ] || [ ! -d $dotfiles ]; then
+        cprint 31 "At least one of given paths is no directory!"
+        abort
+    elif [ $output == "/" ] || [ $dotfiles == "/" ]; then
+        cprint 31 "At least one of given paths is the root directory!"
+        abort
+    fi
+
+    # User should confirm directories
+    confirm "Are this directories correct?" "nf" || abort
+    echo
+
+    # All is well. If single file, copy it
+    if [ "$single_file" != "" ]; then
+        dotcopy $dotfiles/$single_file $output/$single_file
+        exit 0
+    fi
+
+    # Process all files
+    for f in $dotfiles/{.,}*; do
+        # Get the basename
+        base=$(basename $f)
+        # Ignore special files / folders
+        is_ignored $base
+        [ "$ignore_next" == 1 ] && continue
+        # Copy the file
+        dotcopy $dotfiles/$base $output/$base
+    done
+    echo
+}
+
+# Help message
+help() {
+    echo -e "USAGE:"
+    echo -e "./dotfiles software\t\tShow a list of recommended or needed software for this configuration"
+    echo -e "./dotfiles install\t\tCopy all dotfiles in your home directory"
+    echo -e "\t\t-o <dir>\tSet an output directory"
+    echo -e "\t\t-y\t\tDon't ask for permission to overwrite, just do it"
+}
+
+# Software functions
+software() {
+
+    # Print a software line
+    line() {
+
+        # Print an information if software is installed
+        install_info() {
+            # Check not possible
+            if [ "$1" == "0" ]; then
+                cprint 33 "Check not possible"
+                return
+            fi
+            # Print if software is installed
+            which "$1" > /dev/null 2>&1 && cprint 32 "Installed" || cprint 31 "Not installed"
+        }
+
+        # Read the file i
+        IFS=":" read  -a arr <<< "$1"
+
+        # Category
+        if [ "${arr[1]}" == "CAT" ]; then
+            cprint 36 "${arr[0]}" "\n" 4
+        # Empty line
+        elif [ "${arr[0]}" == "" ]; then
+            echo
+        # Software entry
+        else
+            cprint 36 "${arr[0]}" ": "
+            cprint 38 "${arr[1]}" " - "
+            # Install info (if given, extra call parameter)
+            if [ "${arr[2]}" != "" ]; then
+                install_info "${arr[2]}"
+                return
+            fi
+            install_info "${arr[0]}"
+        fi
+    }
+
+   # Show all software
+   while read l; do
+       line "$l"
+   done < $software_file
+}
+
+# First parameter
+case $1 in
+    install|i) install $@;;
+    software|s) software;;
+    *) help;;
+esac
