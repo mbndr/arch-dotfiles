@@ -9,19 +9,19 @@ git clone https://github.com/probandula/arch-dotfiles
 cd arch-dotfiles
 ./install -h # Print help
 ```
-**It's recommended to check first, if all software is installed (`./install -s`), then to manually backup your old configuration and then installing the dotfiles (`./install`).
+**It's recommended to check first, if all software is installed (`./install -s`), then to manually backup your old configuration and then to install the dotfiles (`./install`).**
 
-### Software list
+## Software list
 If you run `./install -s` there will be a list of software recommended or needed to use this configuration.
 There is also printed if this software is currently installed on your system.  
 **This list guarantees nothing and it's possible I forget something!**
 
-### Environment variables
+## Environment variables
 * **WALLPAPER**: The name (without extension) of the current wallpaper in the `~/.wallpapers` directory
 
-### Scripts, functions and aliases
+## Scripts, functions and aliases
 
-##### Misc
+### Misc
 * **conf <key>**: Opens the specific config file for the given key (must be registered)
 * **showkeys**: Shows the `sxhkd` configuration in a colored and more readable way
 * **showcolors**: Shows the configured colors
@@ -34,10 +34,10 @@ There is also printed if this software is currently installed on your system.
 * **update_screen**: Calls `update_resolution` and `update_bg`
 * **us**: Alias for `update_screen` (often needed in VirtualBox)
 
-##### BSPWM aliases
+### BSPWM aliases
 * **bgap <int>**: Changes the window gap
 * **bbw <int>**: Changes the border width
 * **bnc**: Closes the current node
 
-### Wallpapers
-[Firewatch](http://blog.composanto.com/post/138965082204/firewatch-launch-wallpaper-when-we-redit-the)
+## Wallpapers
+[Firewatch](http://blog.camposanto.com/post/138965082204/firewatch-launch-wallpaper-when-we-redit-the)
