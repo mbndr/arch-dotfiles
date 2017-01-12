@@ -54,6 +54,7 @@ software() {
     line "tlp" "Fire and forget power manager"
     line "xterm" "Terminal emulator"
     line "python3" "Python interpreter"
+    line "tree" "Tree file view"
 
     cat "Interface"
     line "x" "Xorg packages (xorg-server xorg-xinit xorg-utils xorg-server-utils)" "startx"

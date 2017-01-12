@@ -4,8 +4,8 @@
 # Aliases
 alias ll='ls -la --color=auto'
 alias tree='tree -a -C -I ".git"'
-# Set the wallpaper TODO to function to be able to set different picture or mode
-alias update_bg='feh --bg-fill ~/.wallpaper.jpg'
+# Update the current wallpaper
+alias update_bg='[ -n "$WALLPAPER" ] && set_bg $WALLPAPER || set_bg 1'
 # Update the screen resolution TODO to function to be able to set different output (auto?)
 alias update_resolution='xrandr --output VGA-1 --auto'
 # Update screen (resolution and background)
@@ -18,6 +18,28 @@ alias xterm='xterm -fn 5x10'
 alias bgap='bspc config window_gap '
 alias bbw='bspc config border_width '
 alias bnc='bspc node -c'
+
+# Set the background image
+# $1 is a number / name of the file, extension is automatically checked
+set_bg() {
+    name=$1
+    path=""
+    # Use default image if no argument given
+    [ -z $1 ] && name="1"
+    base=~/.wallpapers
+    # Check for the file extensions
+    if [ -e $base/$name.jpg ]; then
+        path=$name.jpg
+    elif [ -e $base/$name.jpeg ]; then
+        path=$name.jpeg
+    elif [ -e $base/$name.png ]; then
+        path=$name.png
+    fi
+    # Set the wallpaper
+    feh --bg-fill $base/$path
+    # Write to the env variable
+    export WALLPAPER=$name
+}
 
 # Prompt
 export PROMPT_COMMAND=_prompt
@@ -32,12 +54,12 @@ _prompt() {
 
 # Inputrc location
 export INPUTRC=~/.inputrc
-
 # Extend path
 export PATH=$PATH:~/.scripts
-
 # Favorite editor
 export EDITOR=nano
+# Default wallpaper
+export WALLPAPER=1
 
 # Helper functions to print colored
 cprint() {
