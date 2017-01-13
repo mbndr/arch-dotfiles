@@ -4,8 +4,13 @@
 
 software_file="misc/software.csv"
 install_ignore=(. .. misc README.md dotfiles install .git)
-force_mode=0
 ignore_next=0
+
+# Variables for installing (set by getopt)
+force_mode=0
+output=$HOME
+dotfiles=$(realpath $(dirname "${BASH_SOURCE[0]}"))/
+single_file=""
 
 # Helper function to get if a file / folder should be ignored
 # TODO is there a better way?
@@ -86,19 +91,6 @@ install() {
         fi
     }
 
-    # Used variables
-    local output=$HOME
-    local dotfiles=$(realpath $(dirname "${BASH_SOURCE[0]}"))/
-    local single_file=""
-
-    # Process parameters
-    # TODO WARN!! Multiple parameters possible (maybe static depth)
-    case $2 in
-        -o) output=$3;;
-        -y) force_mode=1;;
-        -f) single_file=$3;;
-    esac
-
     # Print directories
     cprint 36 "Dotfiles" ": " && cprint 38 "${dotfiles}"
     cprint 36 "Output" ": " && cprint 38 "${output}"
@@ -109,7 +101,7 @@ install() {
     # Check directories for existance and not root dir
     output=$(realpath "$output/")
     dotfiles=$(realpath "$dotfiles/")
-    if [ ! -d $output ] || [ ! -d $dotfiles ]; then
+    if [ ! -d "$output" ] || [ ! -d "$dotfiles" ]; then
         cprint 31 "At least one of given paths is no directory!"
         abort
     elif [ $output == "/" ] || [ $dotfiles == "/" ]; then
@@ -146,6 +138,7 @@ help() {
     echo -e "./dotfiles software\t\tShow a list of recommended or needed software for this configuration"
     echo -e "./dotfiles install\t\tCopy all dotfiles in your home directory"
     echo -e "\t\t-o <dir>\tSet an output directory"
+    echo -e "\t\t-f <file>\tOnly process a specific file"
     echo -e "\t\t-y\t\tDon't ask for permission to overwrite, just do it"
 }
 
@@ -194,9 +187,31 @@ software() {
    done < $software_file
 }
 
-# First parameter
-case $1 in
-    install|i) install $@;;
-    software|s) software;;
-    *) help;;
-esac
+# No parameters, show help
+if [ $# == 0 ]; then
+    help
+    exit 1
+fi
+
+# Action to call if options are read
+action="help"
+
+# Parsing options
+# s: Action: Show Software
+# i: Action: Install dotfiles
+# y: Force mode (install)
+# o <dir>: Output directory (install)
+# f <file>: File / dir for processing a single file (install)
+while getopts ":siyo:f:" opt; do
+    case $opt in
+        s) action="software";;
+        i) action="install";;
+        y) force_mode=1;;
+        o) output=$OPTARG;;
+        f) single_file=$OPTARG;;
+        :) cprint 31 "Option -$OPTARG requires an argument";abort;;
+    esac
+done
+
+# Call action
+eval ${action}
