@@ -8,7 +8,6 @@ tlp:Fire and forget power manager
 xterm:Terminal emulator
 python3:Python interpreter
 tree:Tree file view
-nocheck:Not checkable software:0
 
 Interface:CAT
 x:Xorg packages (xorg-server xorg-xinit xorg-utils xorg-server-utils):startx

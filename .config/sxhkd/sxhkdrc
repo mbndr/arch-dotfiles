@@ -4,7 +4,7 @@ super + Return
 
 # Programm launcher
 super + space
-	dmenu_run
+	dmenu_run -p "Run" -nb "#333" -nf "#BBB" -sb "#d17b49" -sf "#fff" -i
 
 # Close current node
 super + c

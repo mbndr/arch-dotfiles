@@ -62,7 +62,7 @@ install() {
 
         # Copy the file and log it
         copy_n_log() {
-            cp -r $1 $2
+            single_copy $1 $2
             cprint 32 "ok: ${3}"
         }
 
@@ -115,7 +115,7 @@ install() {
 
     # All is well. If single file, copy it
     if [ "$single_file" != "" ]; then
-        dotcopy $dotfiles/$single_file $output/$single_file
+        dotcopy $dotfiles/$single_file $output/
         exit 0
     fi
 
@@ -127,7 +127,7 @@ install() {
         is_ignored $base
         [ "$ignore_next" == 1 ] && continue
         # Copy the file
-        dotcopy $dotfiles/$base $output/$base
+        dotcopy $dotfiles/$base $output/
     done
     echo
 }
