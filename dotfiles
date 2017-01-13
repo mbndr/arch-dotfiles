@@ -134,12 +134,12 @@ install() {
 
 # Help message
 help() {
-    echo -e "USAGE:"
-    echo -e "./dotfiles software\t\tShow a list of recommended or needed software for this configuration"
-    echo -e "./dotfiles install\t\tCopy all dotfiles in your home directory"
-    echo -e "\t\t-o <dir>\tSet an output directory"
-    echo -e "\t\t-f <file>\tOnly process a specific file"
-    echo -e "\t\t-y\t\tDon't ask for permission to overwrite, just do it"
+    echo -e "Usage of probandula/arch-dotfiles:"
+    echo -e "./dotfiles -s\t\tShow a list of recommended or needed software for this configuration"
+    echo -e "./dotfiles -i\t\tCopy all dotfiles in your home directory"
+    echo -e "\t-o <dir>\tSet an output directory"
+    echo -e "\t-f <file>\tOnly process a specific file"
+    echo -e "\t-y\t\tDon't ask for permission to overwrite, just do it"
 }
 
 # Software functions
