@@ -1,4 +1,6 @@
 Utils:CAT
+bash:Shell which is configured
+dmenu:Dynamic menu for X
 yaourt:AUR install tool
 inxi:System information
 screenfetch:Logo and system information

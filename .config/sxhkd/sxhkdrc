@@ -29,3 +29,15 @@ super + ctrl + {Left,Down,Up,Right}
 # Cancel the preselection
 super + ctrl + space
 	bspc node -p cancel
+
+# Set node to floating
+super + f
+	bspc node -t floating
+
+# Set node to tiled
+super + t
+	bspc node -t tiled
+
+# Move floating window
+super + {Left, Down, Up, Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
