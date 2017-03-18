@@ -1,5 +1,5 @@
 # Arch-Dotfiles
-These are my early stage dotfiles for my Arch Linux system.  
+These are the dotfiles of my Arch Linux system I currently only use to play around.  
 I'm no Arch expert and it's possible that there are many mistakes in my dotfiles. Feel free to report these.
 
 ![screenshot](/misc/screenshot.png)
