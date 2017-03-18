@@ -1,6 +1,6 @@
 # New Terminal
 super + Return
-	xterm -fn 5x10 # TODO Workaround (see .bashrc)
+	xterm
 
 # Programm launcher
 super + space

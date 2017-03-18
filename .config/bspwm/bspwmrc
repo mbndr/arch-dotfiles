@@ -3,23 +3,18 @@
 # Key event listener
 sxhkd &
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d I
 
 bspc config border_width 2
-bspc config window_gap 100
+bspc config window_gap 30
 
 bspc config split_ratio 0.52
 bspc config borderless_monocle true
 bspc config gapless_monocle true
 
-bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Chromium desktop='^2'
-bspc rule -a mplayer2 state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
-
 bspc config focus_follows_pointer true
 
+# Updating the screen resolution and set the wallpaper
 # TODO check if possible to use alias here (for calling update_screen alias)
 xrandr --output VGA-1 --auto
-feh --bg-fill ~/.wallpaper.jpg
+sh ~/.fehbg

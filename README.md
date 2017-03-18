@@ -22,9 +22,6 @@ If you run `./dotfiles -s` there will be a list of software recommended or neede
 There is also printed if this software is currently installed on your system.  
 **This list guarantees nothing and it's possible I forget something!**
 
-## Environment variables
-* **WALLPAPER**: The name (without extension) of the current wallpaper in the `~/.wallpapers` directory
-
 ## Scripts, functions and aliases
 
 ### Misc
@@ -33,12 +30,12 @@ There is also printed if this software is currently installed on your system.
 * **showcolors**: Shows the configured colors
 * **ll**: Better file listing (`ls -la --color=auto`)
 * **tree**: Better tree view (`tree -a -C -I ".git"`)
-* **xterm**: Just a workaround for non bold font (`xterm -fm 5x10`)
-* **set_bg &lt;name&gt;**: Sets the wallpaper by name (see $WALLPAPER)
-* **update_bg**: Updates the background picture in case of resolution changes (Uses $WALLPAPER)
+* **set_bg &lt;name&gt;**: Sets the wallpaper by name
+* **show_bg**: Shows all available wallpapers (in `~/.wallpapers`)
+* **update_bg**: Updates the background picture in case of resolution changes
 * **update_resolution**: Updates the screen resolution to `auto`
 * **update_screen**: Calls `update_resolution` and `update_bg`
-* **us**: Alias for `update_screen` (often needed in VirtualBox)
+* **us**: Short alias for `update_screen` (often needed in VirtualBox)
 
 ### BSPWM aliases
 * **bgap &lt;int&gt;**: Changes the window gap

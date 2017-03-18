@@ -5,27 +5,25 @@
 alias ll='ls -lah --color=auto'
 alias tree='tree -a -C -I ".git"'
 # Update the current wallpaper
-alias update_bg='[ -n "$WALLPAPER" ] && set_bg $WALLPAPER || set_bg 1'
+alias update_bg='sh ~/.fehbg'
 # Update the screen resolution TODO to function to be able to set different output (auto?)
 alias update_resolution='xrandr --output VGA-1 --auto'
 # Update screen (resolution and background)
 alias update_screen='update_resolution && update_bg'
 alias us='update_screen'
-# TODO just a workaround for non bold
-alias xterm='xterm -fn 5x10'
 
 # BSPWM aliases
 alias bgap='bspc config window_gap '
 alias bbw='bspc config border_width '
 alias bnc='bspc node -c'
 
-# Set the background image
+# Set the background image to an image in the ~/.wallpaper directory
 # $1 is a number / name of the file, extension is automatically checked
 set_bg() {
     name=$1
     path=""
-    # Use default image if no argument given
-    [ -z $1 ] && name="1"
+    # Show wallpapers if no argument given
+    [ -z $1 ] && show_bg && return
     base=~/.wallpapers
     # Check for the file extensions
     if [ -e $base/$name.jpg ]; then
@@ -37,8 +35,16 @@ set_bg() {
     fi
     # Set the wallpaper
     feh --bg-fill $base/$path
-    # Write to the env variable
-    export WALLPAPER=$name
+    # feh writes automatically a file (.fehbg) which contains the last set command
+}
+
+# Shows all possible wallpapers in the ~/.wallpapers directory
+show_bg() {
+    echo "Available wallpapers (call 'set_bg <name>' to set:"
+    for f in ~/.wallpapers/*; do
+        local base=$(basename $f)
+        echo "${base%.*}"
+    done
 }
 
 # Prompt
@@ -58,8 +64,8 @@ export INPUTRC=~/.inputrc
 export PATH=$PATH:~/.scripts
 # Favorite editor
 export EDITOR=nano
-# Default wallpaper
-export WALLPAPER=2
+# XDG config home
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # Helper functions to print colored
 cprint() {
@@ -79,3 +85,6 @@ printwht() { cprint "37" $@; }
 ghc() {
     git clone "https://github.com/${1}"
 }
+
+# Various stuff
+bgap 30
