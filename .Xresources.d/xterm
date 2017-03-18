@@ -1,36 +1,35 @@
 !misc
-xterm*font: fixed
-xterm*boldFont: fixed
-xterm*metaSendsEscape: true
-xterm*eightBitInput: false
-xterm*backarrowKey: false
-xterm*VT100.geometry: 120x40
-xterm*internalBorder: 5
+XTerm*font: fixed
+XTerm*allowBoldFonts: false
+XTerm*metaSendsEscape: true
+XTerm*eightBitInput: false
+XTerm*backarrowKey: false
+XTerm*internalBorder: 10
 
 !colors
-xterm*foreground: #c0b18b
-xterm*background: #1f1f1f
+XTerm*foreground: #c0b18b
+XTerm*background: #2a2a2a
 !black
-xterm*color0: #4a3637
-xterm*color8: #4a3637
+XTerm*color0: #4a3637
+XTerm*color8: #4a3637
 !red
-xterm*color1: #d17b49
-xterm*color9: #d17b49
+XTerm*color1: #d17b49
+XTerm*color9: #d17b49
 !green
-xterm*color2: #7b8748
-xterm*color10: #7b8748
+XTerm*color2: #929a40
+XTerm*color10: #929a40
 !yellow
-xterm*color3: #af865a
-xterm*color11: #af865a
+XTerm*color3: #c1974c
+XTerm*color11: #c1974c
 !blue
-xterm*color4: #535C5C
-xterm*color12: #535C5C
+XTerm*color4: #435858
+XTerm*color12: #435858
 !magenta
-xterm*color5: #775759
-xterm*color13: #775759
+XTerm*color5: #854a4d
+XTerm*color13: #854a4d
 !cyan
-xterm*color6: #6d715e
-xterm*color14: #6d715e
+XTerm*color6: #737470
+XTerm*color14: #737470
 !white
-xterm*color7: #c0b18b
-xterm*color15: #c0b18b
+XTerm*color7: #c0b18b
+XTerm*color15: #c0b18b

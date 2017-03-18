@@ -74,3 +74,8 @@ printblu() { cprint "34" $@; }
 printmag() { cprint "35" $@; }
 printcyn() { cprint "36" $@; }
 printwht() { cprint "37" $@; }
+
+# Simpler github clone
+ghc() {
+    git clone "https://github.com/${1}"
+}
