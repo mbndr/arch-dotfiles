@@ -2,7 +2,7 @@
 These are the dotfiles of my Arch Linux system I currently only use to play around.  
 I'm no Arch expert and it's possible that there are many mistakes in my dotfiles. Feel free to report these.
 
-![screenshot](/misc/screenshot.png)
+![screenshot](https://raw.githubusercontent.com/probandula/arch-dotfiles/master/misc/screenshot.png)
 
 ```bash
 git clone https://github.com/probandula/arch-dotfiles
