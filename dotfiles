@@ -3,7 +3,7 @@
 # The updated dotfiles install script
 
 software_file="misc/software.csv"
-install_ignore=(. .. misc README.md dotfiles install .git)
+install_ignore=(. .. misc README.md dotfiles install .git .gitignore)
 ignore_next=0
 
 # Variables for installing (set by getopt)
