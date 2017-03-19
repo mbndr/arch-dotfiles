@@ -86,5 +86,3 @@ ghc() {
     git clone "https://github.com/${1}"
 }
 
-# Various stuff
-bgap 30
