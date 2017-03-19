@@ -24,6 +24,9 @@ If you run `./dotfiles -s` there will be a list of software recommended or neede
 There is also printed if this software is currently installed on your system.  
 **This list guarantees nothing and it's possible I forget something!**
 
+## Wallpaper download
+The wallpapers used in this dotfiles are way to heavy for the git repo with about 20MB per image. I decided to write a script which automatically downloads all wallpapers. You can run it with `./dotfiles -w`. The success or failure will be shown in the terminal.
+
 ## Scripts, functions and aliases
 
 ### Misc
