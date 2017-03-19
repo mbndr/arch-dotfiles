@@ -5,18 +5,18 @@ sxhkd &
 
 bspc monitor -d I
 
-bspc config border_width 2
+bspc config border_width 1
 bspc config window_gap 30
 
 bspc config split_ratio 0.52
 bspc config borderless_monocle true
 bspc config gapless_monocle true
 
-bspc config focus_follows_pointer true
+#bspc config focus_follows_pointer true
+bspc config click_to_focus true
 
-# TODO Why is this not working :(
-#bspc config normal_border_color \#737470
-#bspc config active_border_color \#929a40
+bspc config focused_border_color "#d17b49"
+bspc config normal_border_color "#737470"
 
 # Updating the screen resolution and set the wallpaper
 # TODO check if possible to use alias here (for calling update_screen alias)
