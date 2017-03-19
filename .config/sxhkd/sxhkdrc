@@ -30,18 +30,6 @@ super + ctrl + {Left,Down,Up,Right}
 super + ctrl + space
 	bspc node -p cancel
 
-# Set node to floating
-super + f
-	bspc node -t floating
-
-# Set node to tiled
-super + t
-	bspc node -t tiled
-
-# Move floating window
-super + {Left, Down, Up, Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
-
 # Swap with greatest tile
 super + g
 	bspc node -s biggest
@@ -53,3 +41,7 @@ super + alt + {Left,Down,Up,Right}
 # Resize tiled node (bottom right corner)
 super + alt + ctrl + {Left,Down,Up,Right}
 	bspc node -z {right -20 0,bottom 0 20, bottom 0 -20,right 20 0}
+
+# Move focus
+super + {Left,Down,Up,Right}
+	bspc node --focus {west,south,north,east}
