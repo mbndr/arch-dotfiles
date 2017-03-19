@@ -43,4 +43,5 @@ There is also printed if this software is currently installed on your system.
 * **bnc**: Closes the current node
 
 ## Wallpapers
-[Firewatch](http://blog.camposanto.com/post/138965082204/firewatch-launch-wallpaper-when-we-redit-the)
+* [Pexels](http://www.pexels.com)
+* [Firewatch](http://blog.camposanto.com/post/138965082204/firewatch-launch-wallpaper-when-we-redit-the)

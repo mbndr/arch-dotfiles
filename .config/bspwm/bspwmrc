@@ -14,6 +14,10 @@ bspc config gapless_monocle true
 
 bspc config focus_follows_pointer true
 
+# TODO Why is this not working :(
+#bspc config normal_border_color \#737470
+#bspc config active_border_color \#929a40
+
 # Updating the screen resolution and set the wallpaper
 # TODO check if possible to use alias here (for calling update_screen alias)
 xrandr --output VGA-1 --auto
