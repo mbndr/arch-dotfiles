@@ -23,3 +23,6 @@ bspc config presel_feedback_color "#c0b18b"
 # TODO check if possible to use alias here (for calling update_screen alias)
 xrandr --output VGA-1 --auto
 sh ~/.fehbg
+
+# Open a new xterm
+xterm &
