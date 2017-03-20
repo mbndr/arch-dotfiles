@@ -11,7 +11,7 @@ git clone https://github.com/probandula/arch-dotfiles
 cd arch-dotfiles
 ./dotfiles # Print help
 ```
-It's recommended to check first if all software is installed (`./dotfiles -s`) then to manually **backup your old configuration** and then to install the dotfiles (`./dotfiles -i`).
+It's recommended to check first if all software is installed (`./dotfiles -s`) then to manually **backup your old configuration** and then to install the dotfiles (`./dotfiles -i`). The wallpapers can be downloaded with `./dotfiles -w`.
 
 ## Install
 If you run `./dotfiles -i` all dotfiles will be copied to the home directory. There are several options:  
