@@ -190,12 +190,22 @@ software() {
 
 # Download wallpapers
 wallpapers() {
+    # create ~/.wallpapers
+	cprint 34 "Creating ~/.wallpapers"
+	mkdir -p ~/.wallpapers
+	# Process all files
     while read l; do
-        echo "Processing: ${l}"
         # split into name and path
-        # create ~/.wallpapers
+		IFS=";" read -a arr <<< $l
         # download data in ~/.wallpapers/${name} (silent)
+		cmd="curl -s -o ~/.wallpapers/${arr[0]} ${arr[1]}"
+		cprint 34 "Executing: $cmd"
+		eval $cmd
         # message if error or success
+		case $? in
+		0) cprint 32 "Success";;
+		*) cprint 31 "Failure";;
+		esac	
     done < $wallpaper_file
 }
 
@@ -214,7 +224,7 @@ action="help"
 # y: Force mode (install)
 # o <dir>: Output directory (install)
 # f <file>: File / dir for processing a single file (install)
-while getopts ":siyo:f:" opt; do
+while getopts ":siywo:f:" opt; do
     case $opt in
         s) action="software";;
         i) action="install";;
