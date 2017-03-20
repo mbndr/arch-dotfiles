@@ -4,6 +4,7 @@
 # Aliases
 alias ll='ls -lah --color=auto'
 alias tree='tree -a -C -I ".git"'
+alias inxi='inxi -F'
 # Update the current wallpaper
 alias update_bg='sh ~/.fehbg'
 # Update the screen resolution TODO to function to be able to set different output (auto?)
@@ -40,7 +41,7 @@ set_bg() {
 
 # Shows all possible wallpapers in the ~/.wallpapers directory
 show_bg() {
-    echo "Available wallpapers (call 'set_bg <name>' to set:"
+    echo "Available wallpapers (call 'set_bg <name>' to set):"
     for f in ~/.wallpapers/*; do
         local base=$(basename $f)
         echo "${base%.*}"
@@ -63,7 +64,7 @@ export INPUTRC=~/.inputrc
 # Extend path
 export PATH=$PATH:~/.scripts
 # Favorite editor
-export EDITOR=nano
+export EDITOR=vim
 # XDG config home
 export XDG_CONFIG_HOME="$HOME/.config"
 

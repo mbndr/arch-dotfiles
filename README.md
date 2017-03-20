@@ -35,6 +35,7 @@ The wallpapers used in this dotfiles are way to heavy for the git repo with abou
 * `colortest`: Shows the configured colors
 * `ll`: Better file listing (`ls -la --color=auto`)
 * `tree`: Better tree view (`tree -a -C -I ".git"`)
+* `inxi`: Better inxi view (`inxi -F`)
 * `set_bg <name>`: Sets the wallpaper by name
 * `show_bg`: Shows all available wallpapers (in `~/.wallpapers`)
 * `update_bg`: Updates the background picture in case of resolution changes
