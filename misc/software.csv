@@ -13,6 +13,7 @@ tree:Tree file view
 
 Interface:CAT
 x:Xorg packages (xorg-server xorg-xinit xorg-utils xorg-server-utils):startx
+terminus-font:A great font for vconsole and xterm:0
 xrandr:Setting screen resolution
 sxhkd:X input event deamon
 bspwm:Window manager
