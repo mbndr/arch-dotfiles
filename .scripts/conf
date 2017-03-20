@@ -10,13 +10,13 @@ fi
 
 edit() {
     eval $EDITOR $1
-    echo "Don't forget to apply your changes to the dotfiles"
+    echo -e "\x1b[34mDon't forget to apply your changes to the dotfiles\x1b[0m"
 }
 
 sudoedit() {
     e=$EDITOR
     eval sudo $e $1
-    echo "Don't forget to apply your changes to the dotfiles"
+    echo -e "\x1b[34mDon't forget to apply your changes to the dotfiles\x1b[0m"
 }
 
 case $1 in

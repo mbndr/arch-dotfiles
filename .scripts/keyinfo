@@ -16,7 +16,7 @@ if not os.path.exists(config):
 	print("Config file not found: " + config)
 	exit(1)
 
-cprint(32, "Configuration of " + config + "\n")
+cprint(34, "Configuration of " + config + "\n")
 
 # Get content
 with open(config) as f:
@@ -34,7 +34,7 @@ for l in content:
 		continue
 	# Comment
 	if l[0] == "#":
-		cprint(35, l[2:])
+		cprint(36, l[2:])
 		next_is_comb = True
 		continue
 	# Combination

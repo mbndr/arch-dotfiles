@@ -31,8 +31,8 @@ The wallpapers used in this dotfiles are way to heavy for the git repo with abou
 
 ### Misc
 * `conf <key>`: Opens the specific config file for the given key (must be registered)
-* `showkeys`: Shows the `sxhkd` configuration in a colored and more readable way
-* `showcolors`: Shows the configured colors
+* `keyinfo`: Shows the `sxhkd` configuration in a colored and more readable way
+* `colortest`: Shows the configured colors
 * `ll`: Better file listing (`ls -la --color=auto`)
 * `tree`: Better tree view (`tree -a -C -I ".git"`)
 * `set_bg <name>`: Sets the wallpaper by name

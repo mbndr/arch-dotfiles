@@ -1,0 +1,10 @@
+#!/bin/bash
+
+printf "\x1b[30mBLACK\x1b[0m\n"
+printf "\x1b[31mRED\x1b[0m\n"
+printf "\x1b[32mGREEN\x1b[0m\n"
+printf "\x1b[33mYELLOW\x1b[0m\n"
+printf "\x1b[34mBLUE\x1b[0m\n"
+printf "\x1b[35mMAGENTA\x1b[0m\n"
+printf "\x1b[36mCYAN\x1b[0m\n"
+printf "\x1b[37mWHITE\x1b[0m\n"

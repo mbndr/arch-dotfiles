@@ -1,5 +1,5 @@
 !misc
-XTerm*font: fixed
+XTerm*font: -*-terminus-medium-r-normal-*-12-*-*-*-*-*-iso10646-1
 XTerm*allowBoldFonts: false
 XTerm*metaSendsEscape: true
 XTerm*eightBitInput: false
