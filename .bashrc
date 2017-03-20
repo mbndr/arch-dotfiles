@@ -13,7 +13,7 @@ alias update_screen='update_resolution && update_bg'
 alias us='update_screen'
 
 # TODO see github XTerm font issue
-alias xtermutf8='xterm -fa "Anonymous\ Pro:size=9:antialias=false" &'
+alias xtermutf8='xterm -fa "Tewi:size=9:antialias=false"'
 
 # BSPWM aliases
 alias bgap='bspc config window_gap '
