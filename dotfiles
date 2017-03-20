@@ -3,6 +3,7 @@
 # The updated dotfiles install script
 
 software_file="misc/software.csv"
+wallpaper_file="misc/wallpapers.csv"
 install_ignore=(. .. misc README.md dotfiles install .git .gitignore)
 ignore_next=0
 
@@ -187,6 +188,27 @@ software() {
    done < $software_file
 }
 
+# Download wallpapers
+wallpapers() {
+    # create ~/.wallpapers
+	cprint 34 "Creating ~/.wallpapers"
+	mkdir -p ~/.wallpapers
+	# Process all files
+    while read l; do
+        # split into name and path
+		IFS=";" read -a arr <<< $l
+        # download data in ~/.wallpapers/${name} (silent)
+		cmd="curl -s -o ~/.wallpapers/${arr[0]} ${arr[1]}"
+		cprint 34 "Executing: $cmd"
+		eval $cmd
+        # message if error or success
+		case $? in
+		0) cprint 32 "Success";;
+		*) cprint 31 "Failure";;
+		esac	
+    done < $wallpaper_file
+}
+
 # No parameters, show help
 if [ $# == 0 ]; then
     help
@@ -202,10 +224,11 @@ action="help"
 # y: Force mode (install)
 # o <dir>: Output directory (install)
 # f <file>: File / dir for processing a single file (install)
-while getopts ":siyo:f:" opt; do
+while getopts ":siywo:f:" opt; do
     case $opt in
         s) action="software";;
         i) action="install";;
+        w) action="wallpapers";;
         y) force_mode=1;;
         o) output=$OPTARG;;
         f) single_file=$OPTARG;;

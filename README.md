@@ -11,7 +11,7 @@ git clone https://github.com/probandula/arch-dotfiles
 cd arch-dotfiles
 ./dotfiles # Print help
 ```
-It's recommended to check first if all software is installed (`./dotfiles -s`) then to manually **backup your old configuration** and then to install the dotfiles (`./dotfiles -i`).
+It's recommended to check first if all software is installed (`./dotfiles -s`) then to manually **backup your old configuration** and then to install the dotfiles (`./dotfiles -i`). The wallpapers can be downloaded with `./dotfiles -w`.
 
 ## Install
 If you run `./dotfiles -i` all dotfiles will be copied to the home directory. There are several options:  
@@ -23,6 +23,9 @@ If you run `./dotfiles -i` all dotfiles will be copied to the home directory. Th
 If you run `./dotfiles -s` there will be a list of software recommended or needed to use this configuration.
 There is also printed if this software is currently installed on your system.  
 **This list guarantees nothing and it's possible I forget something!**
+
+## Wallpaper download
+The wallpapers used in this dotfiles are way to heavy for the git repo with about 20MB per image. I decided to write a script which automatically downloads all wallpapers. You can run it with `./dotfiles -w`. The success or failure will be shown in the terminal.
 
 ## Scripts, functions and aliases
 
