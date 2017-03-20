@@ -57,3 +57,8 @@ There are several keybindings for `sxhkd` set. Currently only commented with the
 * [Mountain](https://static.pexels.com/photos/46113/pexels-photo-46113.jpeg)
 * [Wood](https://static.pexels.com/photos/132205/pexels-photo-132205.jpeg)
 * [Tree](https://static.pexels.com/photos/38136/pexels-photo-38136.jpeg)
+
+## Basic installation
+If you first have to install a basic Arch Linux you can have a look at my [installation cheatsheet](https://github.com/probandula/arch-dotfiles/blob/master/misc/arch-install-cheatsheet.sh). I dont't take any responsibility that this is correct but I use and improve it.
+
+If you're an Arch Linux expert feel free to correct me.
