@@ -1,2 +1,18 @@
+! colors
+#define c_blk #4a3637
+#define c_red #d17b49
+#define c_grn #929a40
+#define c_ylw #c1974c
+#define c_blu #435858
+#define c_mag #854a4d
+#define c_cyn #737470
+#define c_wht #c0b18b
+#define c_fg  c_wht
+#define c_bg  #2a2a2a
+
+! misc
+#define font -*-terminus-medium-r-normal-*-12-*-*-*-*-*-iso10646-1
+#define padding 10
+ 
 #include ".Xresources.d/xterm"
 

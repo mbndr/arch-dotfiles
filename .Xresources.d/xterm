@@ -1,36 +1,36 @@
 !misc
-XTerm*font: -*-terminus-medium-r-normal-*-12-*-*-*-*-*-iso10646-1
+XTerm*font: font
 XTerm*allowBoldFonts: false
 XTerm*metaSendsEscape: true
 XTerm*eightBitInput: false
 XTerm*backarrowKey: false
-XTerm*internalBorder: 10
+XTerm*internalBorder: padding
 XTerm*utf8: 1
 
 !colors
-XTerm*foreground: #c0b18b
-XTerm*background: #2a2a2a
+XTerm*foreground: c_fg
+XTerm*background: c_bg
 !black
-XTerm*color0: #4a3637
-XTerm*color8: #4a3637
+XTerm*color0: c_blk
+XTerm*color8: c_blk
 !red
-XTerm*color1: #d17b49
-XTerm*color9: #d17b49
+XTerm*color1: c_red
+XTerm*color9: c_red
 !green
-XTerm*color2: #929a40
-XTerm*color10: #929a40
+XTerm*color2: c_grn
+XTerm*color10: c_grn
 !yellow
-XTerm*color3: #c1974c
-XTerm*color11: #c1974c
+XTerm*color3: c_ylw
+XTerm*color11: c_ylw
 !blue
-XTerm*color4: #435858
-XTerm*color12: #435858
+XTerm*color4: c_blu
+XTerm*color12: c_blu
 !magenta
-XTerm*color5: #854a4d
-XTerm*color13: #854a4d
+XTerm*color5: c_mag
+XTerm*color13: c_mag
 !cyan
-XTerm*color6: #737470
-XTerm*color14: #737470
+XTerm*color6: c_cyn
+XTerm*color14: c_cyn
 !white
-XTerm*color7: #c0b18b
-XTerm*color15: #c0b18b
+XTerm*color7: c_wht
+XTerm*color15: c_wht
