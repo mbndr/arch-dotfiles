@@ -84,7 +84,7 @@ install() {
         # Is directory
         [ -d $1 ] && type="directory"
         # Ask for permission if existant
-        if [ -e $2 ]; then # TODO could be better but this confirm and multiple operations don't seem to work
+        if [ -e "${2}$(basename $1)" ]; then # TODO could be better but this confirm and multiple operations don't seem to work
             confirm "Overwrite ${type}: ${log_name}?" && copy_n_log $1 $2 $log_name || warn "ign: ${log_name}"
         else
             # Copy file (it doesn't already exist)
