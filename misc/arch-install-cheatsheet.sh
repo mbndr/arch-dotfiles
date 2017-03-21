@@ -38,7 +38,7 @@ echo FONT=ter-v16n >> /etc/vconsole.conf # permanent
 
 # Locales
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
-echo "en_us.UTF-8 UTF-8" > /etc/locale.gen
+echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 locale-gen
 rm -f /etc/localtime
 ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
