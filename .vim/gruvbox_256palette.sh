@@ -1,4 +1,6 @@
 #!/bin/sh
+# Original from https://github.com/morhetz/gruvbox
+# Changed the red color, better for my eyes
 
 if [ "${TERM%%-*}" = "screen" ]; then
   if [ -n "$TMUX" ]; then
