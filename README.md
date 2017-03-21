@@ -29,6 +29,8 @@ The wallpapers used in this dotfiles are way to heavy for the git repo with abou
 
 ## Scripts, functions and aliases
 
+I included some configuration but everyone needs specific configuration for his or her environment. So the file `~/.bash_custom` is loaded (if it exists) in the `.bashrc` for simple adding custom stuff.
+
 ### Misc
 * `conf <key>`: Opens the specific config file for the given key (must be registered)
 * `keyinfo`: Shows the `sxhkd` configuration in a colored and more readable way

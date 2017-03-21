@@ -20,6 +20,7 @@ alias bnc='bspc node -c'
 
 # Git aliases
 alias gs="git status"
+alias gd="git diff"
 alias ga="git add "
 alias gc="git commit -m "
 alias gp="git push "
@@ -96,3 +97,7 @@ ghc() {
     git clone "https://github.com/${1}"
 }
 
+# Load custom bash config file
+if [ -f ~/.bash_custom ]; then
+	source ~/.bash_custom
+fi
