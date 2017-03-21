@@ -67,6 +67,9 @@ export PATH=$PATH:~/.scripts
 export EDITOR=vim
 # XDG config home
 export XDG_CONFIG_HOME="$HOME/.config"
+# Fix gruvbox color bug
+source ~/.vim/gruvbox_256palette.sh
+
 
 # Helper functions to print colored
 cprint() {
