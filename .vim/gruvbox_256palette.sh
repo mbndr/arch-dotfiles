@@ -23,7 +23,7 @@ if [ "${TERM%%-*}" = "screen" ]; then
     printf "\033Ptmux;\033\033]4;248;rgb:bd/ae/93\007\033\\"
     printf "\033Ptmux;\033\033]4;246;rgb:a8/99/84\007\033\\"
 
-    printf "\033Ptmux;\033\033]4;167;rgb:fb/49/34\007\033\\"
+    printf "\033Ptmux;\033\033]4;167;rgb:d7/5F/5F\007\033\\"
     printf "\033Ptmux;\033\033]4;142;rgb:b8/bb/26\007\033\\"
     printf "\033Ptmux;\033\033]4;214;rgb:fa/bd/2f\007\033\\"
     printf "\033Ptmux;\033\033]4;109;rgb:83/a5/98\007\033\\"
@@ -60,7 +60,7 @@ if [ "${TERM%%-*}" = "screen" ]; then
     printf "\033P\033]4;248;rgb:bd/ae/93\007\033\\"
     printf "\033P\033]4;246;rgb:a8/99/84\007\033\\"
 
-    printf "\033P\033]4;167;rgb:fb/49/34\007\033\\"
+    printf "\033P\033]4;167;rgb:d7/5f/5f\007\033\\"
     printf "\033P\033]4;142;rgb:b8/bb/26\007\033\\"
     printf "\033P\033]4;214;rgb:fa/bd/2f\007\033\\"
     printf "\033P\033]4;109;rgb:83/a5/98\007\033\\"
@@ -100,7 +100,7 @@ elif [ "$TERM" != "linux" ] && [ "$TERM" != "vt100" ] && [ "$TERM" != "vt220" ];
   printf "\033]4;248;rgb:bd/ae/93\033\\"
   printf "\033]4;246;rgb:a8/99/84\033\\"
 
-  printf "\033]4;167;rgb:fb/49/34\033\\"
+  printf "\033]4;167;rgb:d7/5f/5f\033\\"
   printf "\033]4;142;rgb:b8/bb/26\033\\"
   printf "\033]4;214;rgb:fa/bd/2f\033\\"
   printf "\033]4;109;rgb:83/a5/98\033\\"
