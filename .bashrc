@@ -18,6 +18,12 @@ alias bgap='bspc config window_gap '
 alias bbw='bspc config border_width '
 alias bnc='bspc node -c'
 
+# Git aliases
+alias gs="git status"
+alias ga="git add "
+alias gc="git commit -m "
+alias gp="git push "
+
 # Set the background image to an image in the ~/.wallpaper directory
 # $1 is a number / name of the file, extension is automatically checked
 set_bg() {
