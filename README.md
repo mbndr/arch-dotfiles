@@ -16,7 +16,7 @@ It's recommended to check first if all software is installed (`./dotfiles -s`) t
 ## Install
 If you run `./dotfiles -i` all dotfiles will be copied to the home directory. There are several options:  
 * `-o`: Set the output directory to something different than home
-* `-f`: Only copy one file / folder
+* `-f <path>`: Only copy one file / folder
 * `-y`: Don't ask on every file if it should be overwritten
 
 ## Software list
