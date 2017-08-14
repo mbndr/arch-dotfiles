@@ -4,6 +4,7 @@
 
 software_file="misc/software.csv"
 wallpaper_file="misc/wallpapers.csv"
+wallpaper_folder="misc/wallpapers"
 install_ignore=(. .. misc README.md dotfiles install .git .gitignore)
 ignore_next=0
 
@@ -189,25 +190,31 @@ software() {
    done < $software_file
 }
 
-# Download wallpapers
+# Download wallpapers and copy wallpapers in repo
 wallpapers() {
-    # create ~/.wallpapers
+    # clear and create ~/.wallpapers
+    cprint 34 "Removing ~/.wallpapers"
+    rm -r ~/.wallpapers
     cprint 34 "Creating ~/.wallpapers"
     mkdir -p ~/.wallpapers
+    cprint 34 "Downloading from $wallpaper_file"
     # Process all files
     while read l; do
         # split into name and path
         IFS=";" read -a arr <<< $l
         # download data in ~/.wallpapers/${name} (silent)
         cmd="curl -s -o ~/.wallpapers/${arr[0]} ${arr[1]}"
-        cprint 34 "Executing: $cmd"
+        cprint 34 "\tExecuting: $cmd"
         eval $cmd
         # message if error or success
         case $? in
-        0) cprint 32 "Success";;
-        *) cprint 31 "Failure";;
-        esac	
+        0) cprint 32 "\tSuccess";;
+        *) cprint 31 "\tFailure";;
+        esac
     done < $wallpaper_file
+    # copy repo wallpapers
+    cprint 34 "Copying from $wallpaper_folder"
+    cp -r "$wallpaper_folder/"* ~/.wallpapers/
 }
 
 # No parameters, show help

@@ -28,6 +28,8 @@ alias gp="git push "
 # Set the background image to an image in the ~/.wallpaper directory
 # $1 is a number / name of the file, extension is automatically checked
 set_bg() {
+	# Bg mode
+	[ -z $2 ] && mode="--bg-fill" || mode=$2
     name=$1
     path=""
     # Show wallpapers if no argument given
@@ -42,8 +44,14 @@ set_bg() {
         path=$name.png
     fi
     # Set the wallpaper
-    feh --bg-fill $base/$path
+    feh $mode $base/$path
     # feh writes automatically a file (.fehbg) which contains the last set command
+}
+
+# Setting the background tiled
+set_bg_tile() {
+    [ -z $1 ] && show_bg && return
+	set_bg $1 "--bg-tile"
 }
 
 # Shows all possible wallpapers in the ~/.wallpapers directory

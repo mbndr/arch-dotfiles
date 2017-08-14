@@ -22,3 +22,6 @@ feh:Set a desktop wallpaper
 Development:CAT
 vagrant:Virtual development environments
 vim:Command line text editor
+micro:Command line text editor
+nano:Command line text editor
+npm:Node Package Manager
