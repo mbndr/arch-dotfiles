@@ -24,5 +24,8 @@ bspc config presel_feedback_color "#c0b18b"
 xrandr --output VGA-1 --auto
 sh ~/.fehbg
 
+# Start yabar
+yabar &
+
 # Open a new xterm
 xterm &
