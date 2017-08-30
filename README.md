@@ -4,7 +4,7 @@ I'm no Arch expert and it's possible that there are many mistakes in my dotfiles
 
 The main goal is to create a system which consists of installing a blank Arch Linux, dowloading this configuration, installing required stuff from the [software list](#software-list) and everything should work. There are not really any other local files, for projects version control is used.
 
-![screenshot](https://raw.githubusercontent.com/probandula/arch-dotfiles/master/misc/screenshot.png)
+![screenshot](https://raw.githubusercontent.com/mbndr/arch-dotfiles/master/misc/screenshot.png)
 
 ```bash
 git clone https://github.com/mbndr/arch-dotfiles
