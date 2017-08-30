@@ -136,7 +136,7 @@ install() {
 
 # Help message
 help() {
-    echo -e "Usage of probandula/arch-dotfiles:"
+    echo -e "Usage of dotfiles (mbndr):"
     echo -e "./dotfiles -s\t\tShow a list of recommended or needed software for this configuration"
     echo -e "./dotfiles -w\t\tDownload wallpapers"
     echo -e "./dotfiles -i\t\tCopy all dotfiles in your home directory"
