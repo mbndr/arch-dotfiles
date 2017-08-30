@@ -7,7 +7,7 @@ The main goal is to create a system which consists of installing a blank Arch Li
 ![screenshot](https://raw.githubusercontent.com/probandula/arch-dotfiles/master/misc/screenshot.png)
 
 ```bash
-git clone https://github.com/probandula/arch-dotfiles
+git clone https://github.com/mbndr/arch-dotfiles
 cd arch-dotfiles
 ./dotfiles # Print help
 ```
