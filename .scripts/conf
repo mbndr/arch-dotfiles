@@ -25,6 +25,7 @@ case $1 in
     xterm) edit ~/.Xresources.d/xterm;;
     sxhkd) edit ~/.config/sxhkd/sxhkdrc;;
     bspwm) edit ~/.config/bspwm/bspwmrc;;
+    yabar) edit ~/.config/yabar/yabar.conf;;
     hosts) sudoedit /etc/hosts;;
     *) echo "No registered config key"; exit 1;;
 esac

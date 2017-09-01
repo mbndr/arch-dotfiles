@@ -5,6 +5,7 @@ XTerm*metaSendsEscape: true
 XTerm*eightBitInput: false
 XTerm*backarrowKey: false
 XTerm*internalBorder: padding
+XTerm*selectToClipboard: true
 XTerm*utf8: 1
 
 !colors
