@@ -73,7 +73,7 @@ sudo pacman -Syu
 sudo pacman -S git
 
 # Install dotfiles
-git clone https://github.com/probandula/arch-dotfiles dotfiles
+git clone https://github.com/mbndr/arch-dotfiles dotfiles
 # Install software from dotfiles (./dotfiles -s)
 # Install wallpapers from dotfiles (./dotfiles -w)
 
